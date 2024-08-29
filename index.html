@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Coding Quiz</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Coding Adventure</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="quiz-container">
-        <h1>Interactive Coding Quiz</h1>
-        <div id="timer">Time: <span id="time">60</span> seconds</div>
-        <div id="score">Score: <span id="current-score">0</span></div>
-        <div id="question-container">
-            <div id="question"></div>
-            <div id="answers"></div>
+    <div class="game-container">
+        <h1 id="game-title">Coding Adventure</h1>
+        <div id="level-container">
+            <button id="start-escape-room" class="button">Escape Room</button>
+            <button id="start-choose-your-adventure" class="button">Choose Your Adventure</button>
         </div>
-        <div id="feedback"></div>
-        <div id="did-you-know"></div>
-        <button id="start-quiz">Start Quiz</button>
-        <button id="next-question" style="display:none;">Next Question</button>
+        <div id="game-content"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="datastore.js"></script>
+    <script src="main.js"></script>
+    <script src="escaperoom.js"></script>
+    <script src="chooseyouradventure.js"></script>
 </body>
 </html>
