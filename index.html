@@ -3,29 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Coding Quiz</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Coding Adventure</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="quiz-container">
-        <h1>Interactive Coding Quiz</h1>
-        <div id="level" class="info-box">Level: <span id="current-level">1</span></div>
-        <div id="timer" class="info-box">Time: <span id="time">5</span> seconds</div>
-        <div id="score" class="info-box">Score: <span id="current-score">0</span> Points</div>
-        <div id="progress-bar-container">
-            <div id="progress-bar"></div>
+    <div class="game-container">
+        <h1 id="game-title">Coding Adventure</h1>
+        <div id="level-container">
+            <button id="start-level1" class="button">Start Level 1: Escape Room</button>
+            <button id="start-level2" class="button">Start Level 2: Choose Your Adventure</button>
         </div>
-        <div id="question-container">
-            <div id="question"></div>
-            <div id="answers"></div>
-        </div>
-        <div id="feedback"></div>
-        <div id="did-you-know"></div>
-        <button id="start-quiz" class="button">Start Quiz</button>
-        <button id="next-question" class="button" style="display:none;">Next Question</button>
+        <div id="game-content"></div>
     </div>
 
     <script src="datastore.js"></script>
     <script src="main.js"></script>
+    <script src="level1.js"></script>
+    <script src="level2.js"></script>
 </body>
 </html>
