@@ -28,17 +28,27 @@ function startQuiz() {
     displayQuestion();
 }
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 function displayQuestion() {
     resetTimer();
-    answerSelected = false; // Reset the flag when a new question is displayed
+    answerSelected = false;
     const currentQuestion = quizData[currentQuestionIndex];
     questionElement.textContent = currentQuestion.question;
     answersElement.innerHTML = '';
 
-    currentQuestion.options.forEach((option, index) => {
+    const shuffledOptions = [...currentQuestion.options];
+    shuffleArray(shuffledOptions);
+
+    shuffledOptions.forEach((option, index) => {
         const button = document.createElement('button');
         button.textContent = option;
-        button.addEventListener('click', () => selectAnswer(index));
+        button.addEventListener('click', () => selectAnswer(currentQuestion.options.indexOf(option)));
         answersElement.appendChild(button);
     });
 
@@ -67,23 +77,28 @@ function selectAnswer(selectedOptionIndex) {
     nextQuestionButton.disabled = false;
 }
 
+
 function nextQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < quizData.length) {
-        if (currentQuestionIndex % 3 === 0) {
+        displayQuestion();
+
+        if (score >= level * 50) {
             level++;
             levelElement.textContent = level;
             feedbackElement.textContent = `Level Up! Welcome to Level ${level}`;
             feedbackElement.style.color = 'orange';
             setTimeout(() => {
                 feedbackElement.textContent = '';
-                displayQuestion();
+                didYouKnowElement.textContent = '';
+                nextQuestionButton.disabled = true;
             }, 1500);
         } else {
-            displayQuestion();
             feedbackElement.textContent = '';
             didYouKnowElement.textContent = '';
             nextQuestionButton.disabled = true;
+            displayQuestion();
+            nextQuestionButton.disabled = false;
         }
     } else {
         endQuiz();
