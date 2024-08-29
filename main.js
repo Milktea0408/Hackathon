@@ -1,14 +1,21 @@
-document.getElementById('start-level1').addEventListener('click', startLevel1);
-document.getElementById('start-level2').addEventListener('click', startLevel2);
+document.getElementById('start-escape-room').addEventListener('click', startEscapeRoom);
+document.getElementById('start-choose-your-adventure').addEventListener('click', startChooseYourAdventure);
 
-function startLevel1() {
-    // Load level 1 specific scripts and styles
+function startEscapeRoom() {
     document.getElementById('game-content').innerHTML = '<canvas id="escapeRoomCanvas"></canvas>';
-    initLevel1();
+    initEscapeRoom();
 }
 
-function startLevel2() {
-    // Load level 2 specific scripts and styles
+function startChooseYourAdventure() {
     document.getElementById('game-content').innerHTML = '<div id="chooseAdventureContainer"></div>';
-    initLevel2();
+    initChooseYourAdventure();
 }
+
+
+// document.getElementById('start-escape-room').addEventListener('click', function() {
+//     window.location.href = 'escaperoom.html';
+// });
+
+// document.getElementById('start-choose-your-adventure').addEventListener('click', function() {
+//     window.location.href = 'chooseyouradventure.html';
+// });

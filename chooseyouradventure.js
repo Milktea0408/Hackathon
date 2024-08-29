@@ -1,4 +1,4 @@
-function initLevel2() {
+function initChooseYourAdventure() {
     const container = document.getElementById('chooseAdventureContainer');
     container.innerHTML = `
         <h2>Choose Your Path</h2>
@@ -34,7 +34,7 @@ function startQuiz(difficulty) {
 
 function getQuestionsByDifficulty(difficulty) {
     // Filter or select questions based on difficulty
-    return quizData.filter(q => q.difficulty === difficulty);
+    return scenarios.filter(q => q.difficulty === difficulty);
 }
 
 function runQuiz(quiz) {
