@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Adventure</title>
+    <link rel="stylesheet" href="style-chooseyouradventure.css">
+    <link rel="icon" type="image/png" href="images/man-climbing.png">
+</head>
+<body>
+    <div class="game-container" id="chooseAdventureContainer">
+        <audio id="backgroundMusic" src="music/chooseyouradventure.mp3" loop></audio>
+    </div>
+    <button id="homeButton" onclick="goHome()">Home 🏚️</button>
+    <div id="volumeControl">
+        <label for="volume">Volume:</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            
+            // Ensure the audio file is ready before attempting to play
+            backgroundMusic.addEventListener('canplaythrough', function() {
+                backgroundMusic.play().catch(error => {
+                    console.error('Playback failed:', error);
+                });
+            });
+
+            const volumeControl = document.getElementById('volume');
+            volumeControl.addEventListener('input', function() {
+                backgroundMusic.volume = this.value;
+            });
+
+            initChooseYourAdventure();
+        });
+
+        function goHome() {
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+            window.location.href = 'index.html';
+        }
+    </script>
+    <script src="datastore.js"></script>
+    <script src="chooseyouradventure.js"></script>
+</body>
+</html>

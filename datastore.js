@@ -13,6 +13,12 @@ const scenarios = [
         difficulty: "easy",
         fact: "HTML stands for Hypertext Markup Language."
     },
+    {
+        question: "What is the correct HTML element for the largest heading?",
+        options: ["<heading>", "<h6>", "<h1>"],
+        correct: 2,
+        difficulty: "easy"
+    },
     // Add more questions for different difficulties...
 ];
 

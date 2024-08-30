@@ -1,18 +1,44 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape Room Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style-escaperoom.css">
+    <link rel="icon" type="image/png" href="images/ogre.png">
 </head>
 <body>
     <div id="game-container">
         <canvas id="escapeRoomCanvas"></canvas>
+        <audio id="backgroundMusic" src="music/escaperoom.mp3" loop></audio>
     </div>
-    <button id="homeButton" onclick="goHome()" style="display: none;">Home 🏚️</button>
+    <button id="homeButton" onclick="goHome()">Home 🏚️</button>
+    <div id="volumeControl">
+        <label for="volume">Volume:</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+    </div>
 
+    <script>
+        window.onload = function() {
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            backgroundMusic.play();
+
+            const volumeControl = document.getElementById('volume');
+            volumeControl.addEventListener('input', function() {
+                backgroundMusic.volume = this.value;
+            });
+
+            initEscapeRoom();
+        };
+
+        function goHome() {
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+            window.location.href = 'index.html';
+        }
+    </script>
     <script src="datastore.js"></script>
     <script src="escaperoom.js"></script>
 </body>
-</html> -->
+</html>
