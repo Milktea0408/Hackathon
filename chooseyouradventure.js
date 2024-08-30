@@ -27,13 +27,11 @@ function choosePath(path) {
 function startQuiz(difficulty) {
     const container = document.getElementById('chooseAdventureContainer');
     container.innerHTML = '<div id="quizContainer"></div>';
-    // Adjust questions based on difficulty
     const quiz = getQuestionsByDifficulty(difficulty);
     runQuiz(quiz);
 }
 
 function getQuestionsByDifficulty(difficulty) {
-    // Filter or select questions based on difficulty
     return scenarios.filter(q => q.difficulty === difficulty);
 }
 
@@ -61,15 +59,68 @@ function runQuiz(quiz) {
     function checkAnswer(selectedIndex) {
         const question = quiz[currentQuestion];
         if (selectedIndex === question.correct) {
+            confettiEffect();
             alert('Correct!');
             currentQuestion++;
             if (currentQuestion < quiz.length) {
                 displayQuestion();
             } else {
                 alert('Congratulations! You have completed this level.');
+                confettiEffect(); // Trigger confetti effect upon completing the quiz
             }
         } else {
+            sadEffect(); // Trigger sad effect on incorrect answer
             alert('Incorrect. Try again.');
         }
     }
+}
+
+function goHome() {
+    window.location.href = 'index.html';
+}
+
+window.onload = function() {
+    initChooseYourAdventure();
+};
+
+function confettiEffect() {
+    const confetti = document.createElement('div');
+    confetti.innerHTML = '🎉';
+    confetti.style.position = 'absolute';
+    confetti.style.left = '50%';
+    confetti.style.top = '50%';
+    confetti.style.transform = 'translate(-50%, -50%)';
+
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const fontSize = Math.min(viewportWidth, viewportHeight) * 0.3;
+    confetti.style.fontSize = `${fontSize}px`;
+
+    confetti.style.animation = 'enlargeFadeOut 2s forwards';
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+        confetti.remove();
+    }, 2000);
+}
+
+function sadEffect() {
+    const sad = document.createElement('div');
+    sad.innerHTML = '😿';
+    sad.style.position = 'absolute';
+    sad.style.left = '50%';
+    sad.style.top = '50%';
+    sad.style.transform = 'translate(-50%, -50%)';
+
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const fontSize = Math.min(viewportWidth, viewportHeight) * 0.3;
+    sad.style.fontSize = `${fontSize}px`;
+
+    sad.style.animation = 'enlargeFadeOut 2s forwards';
+    document.body.appendChild(sad);
+
+    setTimeout(() => {
+        sad.remove();
+    }, 2000);
 }

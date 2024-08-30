@@ -4,21 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Adventure</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/house.png">
+    <link rel="stylesheet" href="style-index.css">
 </head>
 <body>
     <div class="game-container">
+        <audio id="backgroundMusic" src="music/home.mp3" loop></audio>
         <h1 id="game-title">Coding Adventure</h1>
         <div id="level-container">
             <button id="start-escape-room" class="button">Escape Room</button>
             <button id="start-choose-your-adventure" class="button">Choose Your Adventure</button>
         </div>
-        <div id="game-content"></div>
+        <div id="volumeControl">
+            <label for="volume">Volume:</label>
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+        </div>
     </div>
 
-    <script src="datastore.js"></script>
-    <script src="main.js"></script>
-    <script src="escaperoom.js"></script>
-    <script src="chooseyouradventure.js"></script>
+    <script>
+        window.onload = function() {
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            backgroundMusic.play();
+
+            const volumeControl = document.getElementById('volume');
+            volumeControl.addEventListener('input', function() {
+                backgroundMusic.volume = this.value;
+            });
+        };
+
+        document.getElementById('start-escape-room').addEventListener('click', function() {
+            window.location.href = 'escaperoom.html';
+        });
+
+        document.getElementById('start-choose-your-adventure').addEventListener('click', function() {
+            window.location.href = 'chooseyouradventure.html';
+        });
+    </script>
 </body>
 </html>
